@@ -79,3 +79,14 @@ grow_vertical = 2
 texture = ExtResource("2_ee2xt")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="HSlider" type="HSlider" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 9.99999e-06
