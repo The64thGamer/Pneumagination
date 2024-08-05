@@ -27,8 +27,11 @@ public partial class PneumagiNode : Control
         ioVideo,
     }
 
+    NodeGraphAutoload autoLoadGraph;
+
 	public override void _Ready()
 	{
+        autoLoadGraph = GetNode("/root/NodeGraphAutoload") as NodeGraphAutoload;
         draggableArea = FindChild("DraggableArea",true) as Area2D;
         draggableArea.MouseEntered += () => isDragging = true;
         draggableArea.MouseExited += () => isDragging = false;
@@ -62,20 +65,57 @@ public partial class PneumagiNode : Control
         MouseDragProcess();
     }
 
-    void MouseDragProcess()
+    public Vector2 GetInputNodePosition(int index)
+    {
+        return nodeTabs[index].leftPoint.GlobalPosition;
+    }
+
+    public int GetInputDraggedTab()
     {
         for (int i = 0; i < nodeTabs.Count; i++)
         {
+            if(nodeTabs[i].isInputHoveredByMouse)
+            {
+                return i;
+            }
+        }
+        GD.PrintErr("Couldn't find mouse input drag tab");
+        return -1;
+    }
+
+    void MouseDragProcess()
+    {
+        Vector2 offset = new Vector2(10,10);
+        for (int i = 0; i < nodeTabs.Count; i++)
+        {
+            float tabFloat = nodeTabs[i].floatOutputValue;
+            for (int e = 0; e < nodeTabs[i].outputLines.Count; e++)
+            {
+                nodeTabs[i].outputLines[e].SelfModulate = new Color(tabFloat,tabFloat,tabFloat,1);
+                if(e < nodeTabs[i].outputNodes.Count)
+                {
+                   nodeTabs[i].outputLines[e].Points = new Vector2[2]{offset,nodeTabs[i].outputNodes[e].GetInputNodePosition(nodeTabs[i].outputToInputTabIndexes[e]) - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition+offset};
+                }
+            }
             if(nodeTabs[i].isOutputDraggedByMouse)
             {
                 if(!Input.IsActionPressed("Click"))
                 {
                     nodeTabs[i].isOutputDraggedByMouse = false;
-                    if(nodeTabs[i].outputLines.Count >= nodeTabs[i].outputNodes.Count)
-                    {                    
-                        int lineIndex = nodeTabs[i].outputLines.Count-1;
-                        nodeTabs[i].outputLines[lineIndex].QueueFree();
-                        nodeTabs[i].outputLines.RemoveAt(lineIndex);
+
+                    if(autoLoadGraph.inputDraggedNode == null)
+                    {
+                        if(nodeTabs[i].outputLines.Count >= nodeTabs[i].outputNodes.Count)
+                        {                    
+                            int lineIndex = nodeTabs[i].outputLines.Count-1;
+                            nodeTabs[i].outputLines[lineIndex].QueueFree();
+                            nodeTabs[i].outputLines.RemoveAt(lineIndex);
+                        }
+                    }
+                    else
+                    {
+                        nodeTabs[i].outputNodes.Add(autoLoadGraph.inputDraggedNode);
+                        nodeTabs[i].outputToInputTabIndexes.Add(autoLoadGraph.inputDraggedNode.GetInputDraggedTab());
                     }
                     return;
                 }
@@ -92,15 +132,30 @@ public partial class PneumagiNode : Control
                     nodeTabs[i].rightPoint.AddChild(newLine);
                     nodeTabs[i].outputLines.Add(newLine);
                     newLine.Position = Vector2.Zero;
-                    newLine.Points = new Vector2[2]{new Vector2(10,10),GetGlobalMousePosition() - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition};
+                    newLine.Points = new Vector2[2]{offset,GetGlobalMousePosition() - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition};
                 }
                 else
                 {
                     int lineIndex = nodeTabs[i].outputLines.Count-1;
                     Vector2 linePos = nodeTabs[i].outputLines[lineIndex].GlobalPosition;
-                    nodeTabs[i].outputLines[lineIndex].Points = new Vector2[2]{new Vector2(10,10),GetGlobalMousePosition() - linePos};
+                    nodeTabs[i].outputLines[lineIndex].Points = new Vector2[2]{offset,GetGlobalMousePosition() - linePos};
                 }
             }
+        }
+    }
+
+    void HoveringLeftPoint(int index)
+    {
+        nodeTabs[index].isInputHoveredByMouse = true;
+        autoLoadGraph.inputDraggedNode = this;
+    }
+
+    void NotHoveringLeftPoint(int index)
+    {        
+        nodeTabs[index].isInputHoveredByMouse = false;
+        if(autoLoadGraph.inputDraggedNode == this)
+        {
+            autoLoadGraph.inputDraggedNode = null;
         }
     }
 
@@ -173,11 +228,14 @@ public partial class PneumagiNode : Control
             slider = newNode.FindChild("HSlider", true) as HSlider,
             outputLines = new Godot.Collections.Array<Line2D>(),
             outputNodes = new Godot.Collections.Array<PneumagiNode>(),
+            outputToInputTabIndexes = new Godot.Collections.Array<int>(),
         };
 
         
         newNode.GlobalPosition = GetGlobalMousePosition();
         int e = nodeTabs.Count;
+        nodetab.leftPoint.MouseEntered += () => HoveringLeftPoint(e);
+        nodetab.leftPoint.MouseExited += () => NotHoveringLeftPoint(e);
         nodetab.rightPoint.ButtonDown += () => MouseDraggingOutput(e);
         nodetab.slider.ValueChanged += (value) => SliderChangedValue(e, (float)value);
         nodetab.tabName.Text = name;
@@ -246,8 +304,10 @@ public class NodeTabSection
     public float floatOutputValue;
     public float floatInputValue;
     public bool isOutputDraggedByMouse;
+    public bool isInputHoveredByMouse;
     //Connected Nodes
     public Godot.Collections.Array<PneumagiNode> outputNodes;
+    public Godot.Collections.Array<int> outputToInputTabIndexes;
     public Godot.Collections.Array<Line2D> outputLines;
     public PneumagiNode inputNode;
     //Objects

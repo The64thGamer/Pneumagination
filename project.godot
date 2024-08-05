@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Node Graph.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://UI/icon.svg"
 
+[autoload]
+
+NodeGraphAutoload="*res://Scripts/Node Graph/NodeGraphAutoload.cs"
+
 [dotnet]
 
 project/assembly_name="Pneumagination"

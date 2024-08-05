@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icj05"]
 size = Vector2(0, 0)
 
-[node name="Basic Node" type="PanelContainer"]
+[node name="Basic Node" type="PanelContainer" groups=["Node"]]
 custom_minimum_size = Vector2(100, 75)
 offset_right = 200.0
 offset_bottom = 75.0
