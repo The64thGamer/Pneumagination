@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfs15ln600d4k"]
+
+[ext_resource type="Script" path="res://Scripts/Node Graph/SearchBar.cs" id="1_rkev4"]
+[ext_resource type="LabelSettings" uid="uid://dwyftakgikb1h" path="res://Fonts/Node Settings.tres" id="1_s8len"]
+[ext_resource type="Texture2D" uid="uid://ejim75mk02s1" path="res://UI/Magnifying Glass.png" id="2_v6bop"]
+[ext_resource type="Script" path="res://Scripts/Node Graph/SearchBarTab.cs" id="3_vwgkj"]
+
+[node name="Search Bar" type="Panel"]
+custom_minimum_size = Vector2(100, 75)
+offset_left = 231.0
+offset_top = 74.0
+offset_right = 489.0
+offset_bottom = 391.0
+script = ExtResource("1_rkev4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Node Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Search. . ."
+label_settings = ExtResource("1_s8len")
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Node Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+texture = ExtResource("2_v6bop")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Node Tab Holder" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.0001
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/MarginContainer"]
+layout_mode = 2
+text = "Wave"
+label_settings = ExtResource("1_s8len")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("3_vwgkj")
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" to="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" method="OnClick"]

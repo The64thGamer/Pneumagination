@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d176ryvhcb1dd"]
+
+[ext_resource type="Texture2D" uid="uid://edwyq0trleo4" path="res://UI/Backing.jpg" id="1_tb6hl"]
+[ext_resource type="PackedScene" uid="uid://cfs15ln600d4k" path="res://Prefabs/Search Bar.tscn" id="2_5uwq7"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Backing" type="Sprite2D" parent="."]
+texture_filter = 5
+texture_repeat = 2
+texture = ExtResource("1_tb6hl")
+region_enabled = true
+region_rect = Rect2(100000, 100000, 100000, 100000)
+
+[node name="Search Bar" parent="." instance=ExtResource("2_5uwq7")]
+offset_left = 426.0
+offset_top = 90.0
+offset_right = 684.0
+offset_bottom = 407.0

@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch0j05duanxhd"]
+
+[ext_resource type="LabelSettings" uid="uid://dwyftakgikb1h" path="res://Fonts/Node Settings.tres" id="1_2u2y4"]
+[ext_resource type="Texture2D" uid="uid://7222hfdb4qnh" path="res://UI/Node Connection.png" id="2_ee2xt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7smx"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Node Tab" type="Panel"]
+custom_minimum_size = Vector2(0, 30)
+offset_left = -395.0
+offset_right = -129.0
+offset_bottom = 30.0
+
+[node name="Progress Bar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_x7smx")
+max_value = 1.0
+step = 0.0001
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Tab Name" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "RIGHT ARM OUT TWIST"
+label_settings = ExtResource("1_2u2y4")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Left Point" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_vertical = 2
+texture = ExtResource("2_ee2xt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Right Point" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("2_ee2xt")
+expand_mode = 1
+stretch_mode = 4

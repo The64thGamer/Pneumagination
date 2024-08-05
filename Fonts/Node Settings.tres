@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dwyftakgikb1h"]
+
+[ext_resource type="FontFile" uid="uid://luo7pxlkbxwj" path="res://Fonts/Righteous-Regular.ttf" id="1_jv24o"]
+
+[resource]
+font = ExtResource("1_jv24o")
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
