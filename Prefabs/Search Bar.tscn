@@ -88,4 +88,44 @@ grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
 
+[node name="ProgressBar2" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+max_value = 1.0
+step = 0.0001
+show_percentage = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar2/MarginContainer"]
+layout_mode = 2
+text = "Round"
+label_settings = ExtResource("1_s8len")
+horizontal_alignment = 2
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+script = ExtResource("3_vwgkj")
+nodeType = 1
+
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" to="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" method="OnClick"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar2/Wave" to="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar2/Wave" method="OnClick"]

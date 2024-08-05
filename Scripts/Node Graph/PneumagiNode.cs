@@ -5,7 +5,11 @@ using System.Linq;
 
 public partial class PneumagiNode : Control
 {
+    //Savable Data
+    public long nodeID;
     List<NodeTabSection> nodeTabs = new List<NodeTabSection>();
+
+    //Locals
     Area2D draggableArea;
     CollisionShape2D draggableAreaCollision;
 
@@ -55,6 +59,49 @@ public partial class PneumagiNode : Control
             }
         }
         
+        MouseDragProcess();
+    }
+
+    void MouseDragProcess()
+    {
+        for (int i = 0; i < nodeTabs.Count; i++)
+        {
+            if(nodeTabs[i].isOutputDraggedByMouse)
+            {
+                if(!Input.IsActionPressed("Click"))
+                {
+                    nodeTabs[i].isOutputDraggedByMouse = false;
+                    if(nodeTabs[i].outputLines.Count >= nodeTabs[i].outputNodes.Count)
+                    {                    
+                        int lineIndex = nodeTabs[i].outputLines.Count-1;
+                        nodeTabs[i].outputLines[lineIndex].QueueFree();
+                        nodeTabs[i].outputLines.RemoveAt(lineIndex);
+                    }
+                    return;
+                }
+
+                if(nodeTabs[i].outputLines.Count == nodeTabs[i].outputNodes.Count)
+                {
+                    Line2D newLine = new Line2D
+                    {
+                        Width = 10,
+                        DefaultColor = new Color(1,1,1,1),
+                        BeginCapMode = Line2D.LineCapMode.Round,
+                        EndCapMode = Line2D.LineCapMode.Round,
+                    };
+                    nodeTabs[i].rightPoint.AddChild(newLine);
+                    nodeTabs[i].outputLines.Add(newLine);
+                    newLine.Position = Vector2.Zero;
+                    newLine.Points = new Vector2[2]{new Vector2(10,10),GetGlobalMousePosition() - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition};
+                }
+                else
+                {
+                    int lineIndex = nodeTabs[i].outputLines.Count-1;
+                    Vector2 linePos = nodeTabs[i].outputLines[lineIndex].GlobalPosition;
+                    nodeTabs[i].outputLines[lineIndex].Points = new Vector2[2]{new Vector2(10,10),GetGlobalMousePosition() - linePos};
+                }
+            }
+        }
     }
 
     void RefreshDraggableSize()
@@ -72,7 +119,7 @@ public partial class PneumagiNode : Control
         nodeTabs[index].nodeOutputType == InputOutputType.none ||
         nodeTabs[index].nodeOutputType == InputOutputType.ioFloat)
         {
-            nodeTabs[index].floatValue = value;
+            nodeTabs[index].floatOutputValue = value;
             nodeTabs[index].tabValue.Value = value;
             return;
         }
@@ -89,7 +136,7 @@ public partial class PneumagiNode : Control
         nodeTabs[index].nodeOutputType == InputOutputType.none ||
         nodeTabs[index].nodeOutputType == InputOutputType.ioFloat)
         {
-            return nodeTabs[index].floatValue;
+            return nodeTabs[index].floatOutputValue;
         }
         else
         {
@@ -104,6 +151,11 @@ public partial class PneumagiNode : Control
         SetOutputTabFloatValue(index,value);
     }
 
+    public void MouseDraggingOutput(int index)
+    {
+        nodeTabs[index].isOutputDraggedByMouse = true;
+    }
+
 
     public void AddTab(InputOutputType input, InputOutputType output, string name, float defaultValue = 0)
     {
@@ -112,21 +164,24 @@ public partial class PneumagiNode : Control
         NodeTabSection nodetab = new NodeTabSection
         {
             tabName = newNode.FindChild("Tab Name", true) as Label,
-            leftPoint = newNode.FindChild("Left Point", true) as TextureRect,
-            rightPoint = newNode.FindChild("Right Point", true) as TextureRect,
+            leftPoint = newNode.FindChild("Left Button", true) as TextureButton,
+            rightPoint = newNode.FindChild("Right Button", true) as TextureButton,
             tabValue = newNode.FindChild("Progress Bar", true) as ProgressBar,
             nodeInputType = input,
             nodeOutputType = output,
             name = name,
             slider = newNode.FindChild("HSlider", true) as HSlider,
+            outputLines = new Godot.Collections.Array<Line2D>(),
+            outputNodes = new Godot.Collections.Array<PneumagiNode>(),
         };
 
         
         newNode.GlobalPosition = GetGlobalMousePosition();
         int e = nodeTabs.Count;
+        nodetab.rightPoint.ButtonDown += () => MouseDraggingOutput(e);
         nodetab.slider.ValueChanged += (value) => SliderChangedValue(e, (float)value);
         nodetab.tabName.Text = name;
-        nodetab.floatValue = defaultValue;
+        nodetab.floatOutputValue = defaultValue;
         nodetab.tabValue.Value = defaultValue;
         switch (input)
         {
@@ -183,13 +238,22 @@ public partial class PneumagiNode : Control
 
 public class NodeTabSection
 {
+    //Info
     public string name;
     public PneumagiNode.InputOutputType nodeInputType;
     public PneumagiNode.InputOutputType nodeOutputType;
-    public float floatValue;
+    //State
+    public float floatOutputValue;
+    public float floatInputValue;
+    public bool isOutputDraggedByMouse;
+    //Connected Nodes
+    public Godot.Collections.Array<PneumagiNode> outputNodes;
+    public Godot.Collections.Array<Line2D> outputLines;
+    public PneumagiNode inputNode;
+    //Objects
     public Label tabName;
-    public TextureRect leftPoint;
-    public TextureRect rightPoint;
+    public TextureButton leftPoint;
+    public TextureButton rightPoint;
     public ProgressBar tabValue;
     public HSlider slider;
 }

@@ -7,34 +7,23 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icj05"]
 size = Vector2(0, 0)
 
-[node name="Basic Node" type="Panel"]
+[node name="Basic Node" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 75)
-offset_right = 258.0
-offset_bottom = 242.0
+offset_right = 200.0
+offset_bottom = 75.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
 mouse_default_cursor_shape = 6
 script = ExtResource("1_id52y")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Node Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Node Title" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "NODE NODE NODE"
@@ -42,16 +31,15 @@ label_settings = ExtResource("1_xv8wx")
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Node Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Node Icon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 texture = ExtResource("2_13iti")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="Node Tab Holder" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Node Tab Holder" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="DraggableArea" type="Area2D" parent="."]
 
