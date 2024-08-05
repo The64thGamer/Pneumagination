@@ -22,6 +22,6 @@ public partial class NodeWave : PneumagiNode
 	public override void _Process(double delta)
 	{		
 		base._Process(delta);
-		SetOutputTabFloatValue(0,Mathf.Sin((Time.GetTicksMsec() *.04f * GetOutputTabFloatValue(1))+(GetOutputTabFloatValue(2)*4)));
+		SetOutputTabFloatValue(0,(Mathf.Sin((Time.GetTicksMsec() *.04f * GetOutputTabFloatValue(1))+(GetOutputTabFloatValue(2)*6.28f))+1)/2.0f);
 	}
 }
