@@ -71,7 +71,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/MarginContainer"]
 layout_mode = 2
-text = "Wave"
+text = "Generator"
 label_settings = ExtResource("1_s8len")
 horizontal_alignment = 2
 vertical_alignment = 1
