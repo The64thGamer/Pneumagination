@@ -8,7 +8,7 @@ public partial class SearchBarTab : Button
 	public enum NodeType
 	{
 		wave,
-		round,
+		compare,
 	}
 	public void OnClick()
 	{
@@ -16,11 +16,11 @@ public partial class SearchBarTab : Button
 		ulong objId = newNode.GetInstanceId();
 		switch (nodeType)
 		{
-			case NodeType.round:
-					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeRound.cs"));
-				break;
 			case NodeType.wave:
 					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeWave.cs"));
+				break;
+			case NodeType.compare:
+					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeCompare.cs"));
 				break;
 			default:
 			break;

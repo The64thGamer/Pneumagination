@@ -18,10 +18,12 @@ public partial class NodeWave : PneumagiNode
 		AddTab(InputOutputType.ioFloat, InputOutputType.none, "Offset");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	//ALWAYS SET OUTPUT FOR ALL OUTPUTS, INPUT DOESNT AUTO EQUAL OUTPUT
 	public override void _Process(double delta)
 	{		
 		base._Process(delta);
 		SetOutputTabFloatValue(0,(Mathf.Sin((Time.GetTicksMsec() *.04f * GetOutputTabFloatValue(1))+(GetOutputTabFloatValue(2)*6.28f))+1)/2.0f);
+		SetOutputTabFloatValue(1,GetInputTabFloatValue(1));
+		SetOutputTabFloatValue(2,GetInputTabFloatValue(2));
 	}
 }

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpnmdhysd3xy8"]
+
+[ext_resource type="FontFile" uid="uid://luo7pxlkbxwj" path="res://Fonts/Righteous-Regular.ttf" id="1_0nj2b"]
+
+[node name="Node Tab" type="Panel"]
+custom_minimum_size = Vector2(0, 30)
+offset_left = -395.0
+offset_right = -129.0
+offset_bottom = 30.0
+mouse_filter = 1
+
+[node name="Enum" type="OptionButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_0nj2b")
+flat = true
+alignment = 2
+selected = 0

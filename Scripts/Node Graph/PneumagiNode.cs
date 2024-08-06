@@ -8,6 +8,7 @@ public partial class PneumagiNode : Control
     //Savable Data
     public long nodeID;
     List<NodeTabSection> nodeTabs = new List<NodeTabSection>();
+    List<OptionButton> optionButtons = new List<OptionButton>();
 
     //Locals
     Area2D draggableArea;
@@ -63,11 +64,29 @@ public partial class PneumagiNode : Control
         }
         
         MouseDragProcess();
+        CalculationProcess();
+    }
+
+    void CalculationProcess()
+    {
+        for (int i = 0; i < nodeTabs.Count; i++)
+        {
+            if(nodeTabs[i].inputNode != null)
+            {
+                nodeTabs[i].floatInputValue = nodeTabs[i].inputNode.GetOutputTabFloatValue(nodeTabs[i].inputIndex);
+            }
+        }
     }
 
     public Vector2 GetInputNodePosition(int index)
     {
         return nodeTabs[index].leftPoint.GlobalPosition;
+    }
+
+    public void SetInputNodeForTab(int index, PneumagiNode node, int nodeIndex)
+    {
+        nodeTabs[index].inputNode = node;
+        nodeTabs[index].inputIndex = nodeIndex;
     }
 
     public int GetInputDraggedTab()
@@ -94,7 +113,7 @@ public partial class PneumagiNode : Control
                 nodeTabs[i].outputLines[e].SelfModulate = new Color(tabFloat,tabFloat,tabFloat,1);
                 if(e < nodeTabs[i].outputNodes.Count)
                 {
-                   nodeTabs[i].outputLines[e].Points = new Vector2[2]{offset,nodeTabs[i].outputNodes[e].GetInputNodePosition(nodeTabs[i].outputToInputTabIndexes[e]) - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition+offset};
+                   nodeTabs[i].outputLines[e].Points = new Vector2[2]{offset,nodeTabs[i].outputNodes[e].GetInputNodePosition(nodeTabs[i].outputIndexes[e]) - nodeTabs[i].outputLines[nodeTabs[i].outputLines.Count-1].GlobalPosition+offset};
                 }
             }
             if(nodeTabs[i].isOutputDraggedByMouse)
@@ -114,8 +133,10 @@ public partial class PneumagiNode : Control
                     }
                     else
                     {
+                        int index = autoLoadGraph.inputDraggedNode.GetInputDraggedTab();
                         nodeTabs[i].outputNodes.Add(autoLoadGraph.inputDraggedNode);
-                        nodeTabs[i].outputToInputTabIndexes.Add(autoLoadGraph.inputDraggedNode.GetInputDraggedTab());
+                        nodeTabs[i].outputIndexes.Add(index);
+                        autoLoadGraph.inputDraggedNode.SetInputNodeForTab(index,this,i);
                     }
                     return;
                 }
@@ -199,11 +220,44 @@ public partial class PneumagiNode : Control
         }
         return 0;
     }
+
+    public float GetInputTabFloatValue(int index)
+    {
+        if(nodeTabs[index].nodeInputType == InputOutputType.ioClampedFloat || 
+        nodeTabs[index].nodeInputType == InputOutputType.ioBool ||
+        nodeTabs[index].nodeInputType == InputOutputType.none ||
+        nodeTabs[index].nodeInputType == InputOutputType.ioFloat)
+        {
+            return nodeTabs[index].floatInputValue;
+        }
+        else
+        {
+            GD.PrintErr("Tried to get float from a non-float node input");
+        }
+        return 0;
+    }
+
+    public void SetInputTabFloatValue(int index, float value)
+    {
+        if(nodeTabs[index].nodeInputType == InputOutputType.ioClampedFloat || 
+        nodeTabs[index].nodeInputType == InputOutputType.ioBool ||
+        nodeTabs[index].nodeInputType == InputOutputType.none ||
+        nodeTabs[index].nodeInputType == InputOutputType.ioFloat)
+        {
+            nodeTabs[index].floatInputValue = value;
+        }
+        else
+        {
+            GD.PrintErr("Tried to set float from a non-float node input");
+        }
+    }
     
     public void SliderChangedValue(int index, float value)
-    {
-        //later on stop this if connected to input node
-        SetOutputTabFloatValue(index,value);
+    {            
+        if(nodeTabs[index].inputNode == null)
+        {
+            SetInputTabFloatValue(index,value);
+        }
     }
 
     public void MouseDraggingOutput(int index)
@@ -211,6 +265,25 @@ public partial class PneumagiNode : Control
         nodeTabs[index].isOutputDraggedByMouse = true;
     }
 
+    public int GetOptionSelection(int index)
+    {
+        return optionButtons[index].Selected;
+    }
+
+    public void AddEnumTab(string[] options)
+    {
+        Control newNode = GD.Load<PackedScene>("res://Prefabs/Node Pieces/Node Enum.tscn").Instantiate() as Control;
+        OptionButton op = newNode.GetChild(0) as OptionButton;
+        for (int i = 0; i < options.Length; i++)
+        {
+            op.AddItem(options[i]);
+        }
+        op.Selected = 0;
+
+
+        optionButtons.Add(op);
+        FindChild("Node Tab Holder",true).AddChild(newNode);
+    }
 
     public void AddTab(InputOutputType input, InputOutputType output, string name, float defaultValue = 0)
     {
@@ -228,18 +301,17 @@ public partial class PneumagiNode : Control
             slider = newNode.FindChild("HSlider", true) as HSlider,
             outputLines = new Godot.Collections.Array<Line2D>(),
             outputNodes = new Godot.Collections.Array<PneumagiNode>(),
-            outputToInputTabIndexes = new Godot.Collections.Array<int>(),
+            outputIndexes = new Godot.Collections.Array<int>(),
+            inputNode = null,
         };
-
         
-        newNode.GlobalPosition = GetGlobalMousePosition();
         int e = nodeTabs.Count;
         nodetab.leftPoint.MouseEntered += () => HoveringLeftPoint(e);
         nodetab.leftPoint.MouseExited += () => NotHoveringLeftPoint(e);
         nodetab.rightPoint.ButtonDown += () => MouseDraggingOutput(e);
         nodetab.slider.ValueChanged += (value) => SliderChangedValue(e, (float)value);
         nodetab.tabName.Text = name;
-        nodetab.floatOutputValue = defaultValue;
+        nodetab.floatInputValue = defaultValue;
         nodetab.tabValue.Value = defaultValue;
         switch (input)
         {
@@ -307,9 +379,10 @@ public class NodeTabSection
     public bool isInputHoveredByMouse;
     //Connected Nodes
     public Godot.Collections.Array<PneumagiNode> outputNodes;
-    public Godot.Collections.Array<int> outputToInputTabIndexes;
+    public Godot.Collections.Array<int> outputIndexes;
     public Godot.Collections.Array<Line2D> outputLines;
     public PneumagiNode inputNode;
+    public int inputIndex;
     //Objects
     public Label tabName;
     public TextureButton leftPoint;
