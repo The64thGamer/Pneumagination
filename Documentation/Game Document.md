@@ -22,3 +22,11 @@ In the beginning of the game, many things are going to have to be done by hand. 
 Once the player gets enough resources they'll be able to begin constructing walls and rooms to house their machines and items. Lights for the rooms will run on the same node-graph power system, creating a struggle between using generators for builds or more machinery. The graph will also begin branching into possible complex circuitry to power things. Players could be happy to just use a single switch to turn on the lights, but maybe each room could have its own switch? Maybe there's a master switch for everything? Maybe lights only come on when you come in the room?
 
 If the player pursues circuitry and computers fast, they'll arrive at recordable media. Inputs will be able to be played back or synched with audio and video to create more complex and engaging experiences for NPCs, or to automate very complex systems for goods. This can easily branch into animatronics, where players can set up an entire showroom of custom effects and showtapes. Animatronics will be accessible early on through using hand cranks and camshafts, but will flourish in the mid-game.
+
+## Random Ideas Board
+
+-Incorperate "Oh Funny Horse" side project as a producable item in-game.
+-Set all horse related items to be convertable into glue. Doesn't matter if its a wooden horse statue or a plastic horse toy, all horse items become glue. Achievement for crafting the first horse item is "3 Hooves in the Glue Factory" to hint towards crafting glue.
+-Animatronics having an incorperated node-graph pneumatics system where air pressure and air left in the tank changes how they move
+-A node-graph system for transporting items. Robots automate item transfer by having a storage connected as "input" for them to pick up from, and an "output" storage unit they have to travel to and drop off. Maybe in the end-game some sort of instant item transfer too.
+
