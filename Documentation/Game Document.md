@@ -26,7 +26,10 @@ If the player pursues circuitry and computers fast, they'll arrive at recordable
 ## Random Ideas Board
 
 -Incorperate "Oh Funny Horse" side project as a producable item in-game.
+
 -Set all horse related items to be convertable into glue. Doesn't matter if its a wooden horse statue or a plastic horse toy, all horse items become glue. Achievement for crafting the first horse item is "3 Hooves in the Glue Factory" to hint towards crafting glue.
+
 -Animatronics having an incorperated node-graph pneumatics system where air pressure and air left in the tank changes how they move
+
 -A node-graph system for transporting items. Robots automate item transfer by having a storage connected as "input" for them to pick up from, and an "output" storage unit they have to travel to and drop off. Maybe in the end-game some sort of instant item transfer too.
 
