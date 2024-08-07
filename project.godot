@@ -23,6 +23,10 @@ NodeGraphAutoload="*res://Scripts/Node Graph/NodeGraphAutoload.cs"
 
 project/assembly_name="Pneumagination"
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 Click={
