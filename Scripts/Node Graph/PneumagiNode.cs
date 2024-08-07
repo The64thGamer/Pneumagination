@@ -223,16 +223,26 @@ public partial class PneumagiNode : Control
 
     public float GetInputTabFloatValue(int index)
     {
-        if(nodeTabs[index].nodeInputType == InputOutputType.ioClampedFloat || 
-        nodeTabs[index].nodeInputType == InputOutputType.ioBool ||
-        nodeTabs[index].nodeInputType == InputOutputType.none ||
-        nodeTabs[index].nodeInputType == InputOutputType.ioFloat)
+        switch (nodeTabs[index].nodeInputType)
         {
-            return nodeTabs[index].floatInputValue;
-        }
-        else
-        {
-            GD.PrintErr("Tried to get float from a non-float node input");
+            case InputOutputType.ioAudio:
+                GD.PrintErr("Tried to get float from an audio node input");
+                break;            
+            case InputOutputType.ioVideo:
+                GD.PrintErr("Tried to get float from a video node input");
+                break;            
+            case InputOutputType.none:
+                GD.PrintErr("Tried to get float from a tab with no input");
+                break;            
+            case InputOutputType.ioBool:
+                return nodeTabs[index].floatInputValue > 0.5f ? 1 : 0;
+            case InputOutputType.ioClampedFloat:
+                return Mathf.Clamp(nodeTabs[index].floatInputValue,0,1);
+            case InputOutputType.ioFloat:
+                return nodeTabs[index].floatInputValue;
+            default:
+                GD.PrintErr("Tried to get float from a non-float node input");
+                break;
         }
         return 0;
     }

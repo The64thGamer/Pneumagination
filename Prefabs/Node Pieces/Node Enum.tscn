@@ -19,4 +19,3 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_0nj2b")
 flat = true
 alignment = 2
-selected = 0

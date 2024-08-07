@@ -9,6 +9,9 @@ public partial class SearchBarTab : Button
 	{
 		generator,
 		compare,
+		math,
+		blend,
+		bitwise,
 	}
 	public void OnClick()
 	{
@@ -21,6 +24,15 @@ public partial class SearchBarTab : Button
 				break;
 			case NodeType.compare:
 					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeCompare.cs"));
+				break;
+			case NodeType.math:
+					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeMath.cs"));
+				break;
+			case NodeType.blend:
+					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeBlend.cs"));
+				break;
+			case NodeType.bitwise:
+					newNode.SetScript(GD.Load<Script>("res://Scripts/Node Graph/NodeBitwise.cs"));
 				break;
 			default:
 			break;
