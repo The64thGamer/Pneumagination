@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cb6me8ma6gi2o"]
+
+[ext_resource type="Shader" path="res://Shaders/Palette.gdshader" id="1_ltcub"]
+[ext_resource type="Texture2D" uid="uid://buts0asd88vqb" path="res://Textures/PaintMasks/Grass_PaintMap.png" id="2_g2ge2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ltcub")
+shader_parameter/colorA = Color(0, 0.568627, 0.196078, 1)
+shader_parameter/colorB = Color(0.00390631, 0.309712, 0.0195315, 1)
+shader_parameter/colorC = Color(0.603922, 0.960784, 0.72549, 1)
+shader_parameter/colorD = Color(0, 0.505882, 0.176471, 1)
+shader_parameter/colorA_shaded = Color(0.12549, 0.345098, 0.313726, 1)
+shader_parameter/colorB_shaded = Color(0.054902, 0.172549, 0.172549, 1)
+shader_parameter/colorC_shaded = Color(0.211765, 0.419608, 0.466667, 1)
+shader_parameter/colorD_shaded = Color(0, 0.298039, 0.313726, 1)
+shader_parameter/colorA_black = Color(0.1, 0, 0, 1)
+shader_parameter/colorB_black = Color(0, 0.1, 0, 1)
+shader_parameter/colorC_black = Color(0, 0, 0.1, 1)
+shader_parameter/colorD_black = Color(0, 0, 0, 1)
+shader_parameter/triplanar_scale = Vector3(0.03, 0.03, 0.03)
+shader_parameter/palette = ExtResource("2_g2ge2")

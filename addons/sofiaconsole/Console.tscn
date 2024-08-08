@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyya4j4ywm1k6"]
+
+[ext_resource type="Script" path="res://addons/sofiaconsole/Console.cs" id="1_dw41g"]
+[ext_resource type="Theme" uid="uid://c2m7n0pwedx3p" path="res://UI/Theme/Default.tres" id="2_egytt"]
+[ext_resource type="Theme" uid="uid://csvm2c04m8ow3" path="res://UI/Theme/Menus.tres" id="2_g27to"]
+[ext_resource type="Script" path="res://addons/sofiaconsole/Commands/FpsCounterCommand.cs" id="2_nkfel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2ijg"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_ab2mh"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Console" type="Node" node_paths=PackedStringArray("_consoleCanvas", "_background", "_closeButton", "_commandInput", "_commandSendButton", "_historyScrollContainer", "_historyContent")]
+script = ExtResource("1_dw41g")
+_consoleCanvas = NodePath("ConsoleCanvas")
+_background = NodePath("ConsoleCanvas/Background")
+_closeButton = NodePath("ConsoleCanvas/Background/Window/Content/Input/HBoxContainer/CloseButton")
+_commandInput = NodePath("ConsoleCanvas/Background/Window/Content/Input/HBoxContainer/CommandInput")
+_commandSendButton = NodePath("ConsoleCanvas/Background/Window/Content/Input/HBoxContainer/CommandSendButton")
+_historyScrollContainer = NodePath("ConsoleCanvas/Background/Window/Content/History/ScrollContainer")
+_historyContent = NodePath("ConsoleCanvas/Background/Window/Content/History/ScrollContainer/Content")
+
+[node name="ConsoleCanvas" type="CanvasLayer" parent="."]
+layer = 128
+visible = false
+
+[node name="Background" type="Panel" parent="ConsoleCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Window" type="Panel" parent="ConsoleCanvas/Background"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g27to")
+
+[node name="Content" type="VBoxContainer" parent="ConsoleCanvas/Background/Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="History" type="PanelContainer" parent="ConsoleCanvas/Background/Window/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ConsoleCanvas/Background/Window/Content/History"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ConsoleCanvas/Background/Window/Content/History/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Input" type="PanelContainer" parent="ConsoleCanvas/Background/Window/Content"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConsoleCanvas/Background/Window/Content/Input"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="CommandInput" type="LineEdit" parent="ConsoleCanvas/Background/Window/Content/Input/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter \"help\" for a list of commands"
+flat = true
+
+[node name="CommandSendButton" type="Button" parent="ConsoleCanvas/Background/Window/Content/Input/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Send"
+
+[node name="CloseButton" type="Button" parent="ConsoleCanvas/Background/Window/Content/Input/HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Close"
+
+[node name="BuiltinCommands" type="Node" parent="."]
+
+[node name="FpsCounter" type="Node" parent="BuiltinCommands"]
+script = ExtResource("2_nkfel")
+
+[node name="CounterCanvas" type="CanvasLayer" parent="BuiltinCommands/FpsCounter"]
+layer = 128
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="BuiltinCommands/FpsCounter/CounterCanvas"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 52.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_m2ijg")
+
+[node name="Label" type="Label" parent="BuiltinCommands/FpsCounter/CounterCanvas/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_egytt")
+text = "8888"
+label_settings = SubResource("LabelSettings_ab2mh")

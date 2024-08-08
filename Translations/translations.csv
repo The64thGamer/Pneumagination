@@ -1,0 +1,92 @@
+key,en
+TITLE,Pneumagination
+CREATOR,The 64th Gamer
+CREATE_WORLD,Create World
+WORLD_SEED,Seed
+WORLD_NAME,Name
+ONLINE,Online
+HEADLESS_SERVER,Headless
+PORT_NUMBER,Port
+START_BUTTON,Start
+PLAY_BUTTON,Play
+JOIN_GAME,Join Game
+QUIT,Quit Game
+QUIT_TO_TITLE,Exit to Title
+OPTIONS,Options
+OPTIONS_GAMEPLAY,Gameplay
+OPTIONS_VIDEO,Video
+OPTIONS_AUDIO,Audio
+OPTIONS_PROFILE,Profile
+OPTIONS_FOV,Field of View
+OPTIONS_WORLD,World
+OPTIONS_AUTOSAVE_TIMER,Autosave
+SERVER_ADDRESS,Address
+JOIN_BUTTON,Join
+SAVE_FILES,My Worlds
+PLAYER_INFO,Player Info
+PLAYER_NAME,Name
+DEBUG_CONSOLE_TITLE,Console
+DEBUG_CONSOLE_HEADER,Pneumagination Console [ Using SofiaConsole v1.2.0 ]
+PLAYER_DEFAULT_NAME,I Forgot To Change Name
+WORLD_DEFAULT_NAME,A New World
+CURRENT_VERSION,v0.14a
+WIKI_TITLE,In-Game Manual
+WIKI_SEARCH,Search
+WIKI_ARTICLE_MAIN_PAGE,"Welcome to the Pneumagination manual! This is built entirely in-game for offline use! Use the search above to find articles on what you need. You can open this at any time with 'i'.
+
+General Pages:
+[ul]
+[url]Pneumagination[/url]
+[url]Brush[/url]
+[url]Material[/url]
+[url]Day/Night Cycle[/url]
+[/ul]
+
+Versions:
+[ul]
+[url]v0.1a[/url]
+[url]v0.2a[/url]
+[url]v0.3a[/url]
+[url]v0.4a[/url]
+[url]v0.5a[/url]
+[url]v0.6a[/url]
+[url]v0.7a[/url]
+[url]v0.8a[/url]
+[url]v0.9a[/url]
+[url]v0.10a[/url]
+[url]v0.11a[/url]
+[url]v0.12a[/url]
+[url]v0.13a[/url]
+[/ul]"
+WIKI_ARTICLE_PNEUMAGINATION,"Pneumagination is a sandbox survival game that started development on October 16, 2023 and is still in active alpha development."
+WIKI_ARTICLE_BRUSH,"Brushes are the building blocks of Pneumagination that make up the world generation and structures players build.
+
+Brushes are cube shaped with 6 different sides for [url=Material]Materials[/url] to be placed on. Each vertex of the Brush can be manipulated in 1 unit intervals up to a given max size. Brushes are obtainable through mining, and are deposited in the player's inventory in units of volume mined. Units are consumed when a player places or manipulates a Brush into a larger size. If a Brush's volume is a non-whole number value, its consumed total will round up to the nearest number."
+WIKI_ARTICLE_MATERIAL,"Materials are items used for crafting and can be placed on any face of a [url]Brush[/url] to apply it like a texture.
+
+They can be obtained by mining any [url]Brush[/url], which will deposit the material for every face of the [url]Brush[/url] it is located on. No matter the size of the [url]Brush[/url] mined, each face only gives a single material."
+WIKI_ARTICLE_V0.1A,"v0.1a is the first version of [url]Pneumagination[/url], released on October 21, 2023 (3:59AM CDT)."
+WIKI_ARTICLE_DAY/NIGHT_CYCLE,"The Day/Night Cycle is a time system present on the Earth portion of the world that lasts 25 minutes per in-game day.
+
+New save files always start 6 minutes and 40 seconds into the day around the early morning time.
+
+During the morning, heavy fog encompasses the player, making it hard to see ahead. By noon the fog clears and the full render distance is shown. By sunset the sky and fog changes to orange, pink, purple, then a dark blue. During the night the sky and lighting will slowly fade to pitch black as midnight approaches, requring external light to see. Even when in a well-lit area, the fog will then begin to roll back in and blind most of the render distance. As morning approaches the pitch blackness will lift while retaining the heavy fog."
+ERROR,ERROR
+ERROR_CORRUPTED_WORLD,[>Corrupted World Data<]
+ERROR_CORRUPTED_WORLD_TIP,(Might still be loadable)
+MATERIAL_GENERIC,Material
+MATERIAL_ARTIFICIAL,Artificial Material
+MATERIAL_TERRAIN,Terrain Material
+MATERIAL_PLANT, Plant Material
+MATERIAL_DIALECTRIC,Dielectric
+MATERIAL_ASPHALT,Asphalt
+MATERIAL_PLASTER,Plaster
+MATERIAL_ROCK,Rock
+MATERIAL_GRASS,Grass
+MATERIAL_SAND,Sand
+MATERIAL_SANDY_TRAIL,Sandy Trail
+MATERIAL_LATERITE,Laterite
+MATERIAL_WHITE_SAND,White Sand
+VOLUME_LIQUID,Volume of Liquid
+VOLUME_WATER,Water
+

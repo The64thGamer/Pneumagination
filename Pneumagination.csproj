@@ -1,8 +1,13 @@
 <Project Sdk="Godot.NET.Sdk/4.2.1">
   <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <TargetFramework>net6.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EasyCompressor.Snappier" Version="2.0.2" />
+    <PackageReference Include="MemoryPack" Version="1.21.1" />
+  </ItemGroup>
 </Project>

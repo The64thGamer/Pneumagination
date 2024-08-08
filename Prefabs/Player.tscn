@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://dayc5ri3bltvr"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerMovement.cs" id="1_cwgi3"]
+[ext_resource type="Shader" path="res://Shaders/Fog.gdshader" id="2_88pqh"]
+[ext_resource type="Script" path="res://Scripts/Player/FOVAdjust.cs" id="2_n2ycq"]
+[ext_resource type="Script" path="res://Scripts/World/ShaderTriangle.gd" id="5_uxnim"]
+[ext_resource type="PackedScene" uid="uid://bd2w72tikpphr" path="res://Prefabs/UI/PlayerUI.tscn" id="10_5quhx"]
+[ext_resource type="Script" path="res://Scripts/Player/PhotoMode.cs" id="32_4wyds"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6afil"]
+size = Vector3(3, 11, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l23mf"]
+size = Vector3(3, 11, 3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdjng"]
+render_priority = 0
+shader = ExtResource("2_88pqh")
+shader_parameter/fog_color = Color(0.278431, 0.494118, 1, 1)
+shader_parameter/fogCenterWorldPos = Vector3(0, 100, 0)
+shader_parameter/fogMaxRadius = 558.04
+shader_parameter/fogMinRadius = 387.66
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5c67k"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera") groups=["Player"]]
+collision_layer = 3
+collision_mask = 5
+floor_constant_speed = true
+floor_max_angle = 1.39626
+safe_margin = 0.01
+script = ExtResource("1_cwgi3")
+head = NodePath("Player Head")
+camera = NodePath("Player Head/Player Camera")
+
+[node name="Player Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+layers = 2
+mesh = SubResource("BoxMesh_6afil")
+skeleton = NodePath("../Player Collision")
+
+[node name="Player Collision" type="CollisionShape3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+shape = SubResource("BoxShape3D_l23mf")
+
+[node name="Player Head" type="Node3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+
+[node name="Player Camera" type="Camera3D" parent="Player Head" groups=["Player"]]
+cull_mask = 1048573
+fov = 92.8
+far = 2000.0
+script = ExtResource("2_n2ycq")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Player Head/Player Camera"]
+current = true
+
+[node name="Fog Mesh" type="MeshInstance3D" parent="Player Head/Player Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
+material_override = SubResource("ShaderMaterial_qdjng")
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("ArrayMesh_5c67k")
+script = ExtResource("5_uxnim")
+
+[node name="PlayerUI" parent="Player Head/Player Camera" instance=ExtResource("10_5quhx")]
+
+[node name="Photo Mode" type="Node3D" parent="."]
+
+[node name="Photo Mode Pivot" type="Node3D" parent="Photo Mode"]
+
+[node name="Photo Mode Camera" type="Camera3D" parent="Photo Mode/Photo Mode Pivot"]
+projection = 1
+fov = 1.0
+size = 1000.0
+near = 10.0
+far = 1500.0
+script = ExtResource("32_4wyds")
+
+[node name="Inventory" type="Node" parent="."]
