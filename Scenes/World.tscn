@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://ckmu0mbbjrji2" path="res://Prefabs/UI/Options.tscn" id="3_krb6d"]
 [ext_resource type="Gradient" uid="uid://ck38t5fd85an7" path="res://UI/Gradients/Sun.tres" id="3_mkm73"]
 [ext_resource type="Gradient" uid="uid://cl5kd5v3k56ma" path="res://UI/Gradients/Sky.tres" id="4_i3crq"]
+[ext_resource type="PackedScene" uid="uid://d176ryvhcb1dd" path="res://Prefabs/Node Graph.tscn" id="4_ixtas"]
 [ext_resource type="Gradient" uid="uid://j1x467tpopan" path="res://UI/Gradients/Fog.tres" id="5_suwk1"]
-[ext_resource type="PackedScene" uid="uid://ctebjgs6cgjjn" path="res://Particles/Break Brush.tscn" id="6_oeqbt"]
 [ext_resource type="Material" uid="uid://cb6me8ma6gi2o" path="res://Materials/4.tres" id="10_0blar"]
 
 [sub_resource type="Environment" id="Environment_rruv5"]
@@ -54,6 +54,8 @@ size = Vector2(10000, 10000)
 
 [node name="World" type="Node3D"]
 
+[node name="Node Graph" parent="." instance=ExtResource("4_ixtas")]
+
 [node name="Menu" parent="." instance=ExtResource("2_40vuv")]
 visible = false
 
@@ -87,9 +89,6 @@ directional_shadow_mode = 0
 directional_shadow_split_1 = 0.052
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 2374.0
-
-[node name="Break Brush Particles" parent="." instance=ExtResource("6_oeqbt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 496.796, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = ExtResource("10_0blar")

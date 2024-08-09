@@ -48,16 +48,16 @@ public partial class PneumagiNode : Control
             {
                 dragDoubleCheck = false;
             }
-            if(Input.IsActionJustPressed("Click"))
+            if(Input.IsActionJustPressed("Action"))
             {
                 dragOffset = GetGlobalMousePosition() - GlobalPosition;
                 dragDoubleCheck = true;
             }
-            if(Input.IsActionPressed("Click") && dragDoubleCheck)
+            if(Input.IsActionPressed("Action") && dragDoubleCheck)
             {
                 GlobalPosition = GetGlobalMousePosition() - dragOffset;
             }
-            if(!Input.IsActionPressed("Click"))
+            if(!Input.IsActionPressed("Action"))
             {
                 dragDoubleCheck = false;
             }
@@ -118,7 +118,7 @@ public partial class PneumagiNode : Control
             }
             if(nodeTabs[i].isOutputDraggedByMouse)
             {
-                if(!Input.IsActionPressed("Click"))
+                if(!Input.IsActionPressed("Action"))
                 {
                     nodeTabs[i].isOutputDraggedByMouse = false;
 

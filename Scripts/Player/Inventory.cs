@@ -8,6 +8,7 @@ public partial class Inventory : Control
 	bool canInput = true;
 	public static bool inventoryEnabled;
 	bool pauseScreen = false;
+	bool nodeScreen = false;
 	Input.MouseModeEnum oldMouse;
 
 	public override void _Ready()
@@ -17,7 +18,7 @@ public partial class Inventory : Control
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("Inventory") && canInput && !pauseScreen)
+		if(Input.IsActionJustPressed("Inventory") && canInput && !pauseScreen && !nodeScreen)
 		{
 			ToggleInventory();
 		}
@@ -26,11 +27,23 @@ public partial class Inventory : Control
 			pauseScreen = !pauseScreen;
 			ToggleAllInventoryUI();
 		}
+		if (Input.IsActionJustPressed("Toggle NodeGraph"))
+		{
+			nodeScreen = !nodeScreen;
+			ToggleAllInventoryUI();
+		}
 	}
 
 	public void ToggleAllInventoryUI()
 	{
-		(GetParent() as Control).Visible = !(GetParent() as Control).Visible;
+		if(pauseScreen || nodeScreen)
+		{
+			(GetParent() as Control).Visible = false;
+		}
+		else
+		{
+			(GetParent() as Control).Visible = true;
+		}
 	}
 
 	public void ToggleInventory()

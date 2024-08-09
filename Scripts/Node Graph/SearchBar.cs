@@ -12,12 +12,12 @@ public partial class SearchBar : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("Alt Click") && !Visible)
+		if(Input.IsActionJustPressed("Alt Action") && !Visible)
 		{
 			Visible = true;
 			GlobalPosition = GetGlobalMousePosition();
 		}
-		else if((Input.IsActionJustPressed("Alt Click")||Input.IsActionJustPressed("Click")) && Visible)
+		else if((Input.IsActionJustPressed("Alt Action")||Input.IsActionJustPressed("Action")) && Visible)
 		{
 			Visible = false;
 		}

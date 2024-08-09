@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfs15ln600d4k"]
+[gd_scene load_steps=5 format=3 uid="uid://dv82csapvrf5e"]
 
 [ext_resource type="Script" path="res://Scripts/Node Graph/SearchBar.cs" id="1_rkev4"]
-[ext_resource type="LabelSettings" uid="uid://dwyftakgikb1h" path="res://Fonts/Node Settings.tres" id="1_s8len"]
+[ext_resource type="LabelSettings" path="res://Fonts/Node Settings.tres" id="1_s8len"]
 [ext_resource type="Texture2D" uid="uid://ejim75mk02s1" path="res://UI/Magnifying Glass.png" id="2_v6bop"]
 [ext_resource type="Script" path="res://Scripts/Node Graph/SearchBarTab.cs" id="3_vwgkj"]
 
@@ -11,6 +11,7 @@ offset_left = 231.0
 offset_top = 74.0
 offset_right = 489.0
 offset_bottom = 391.0
+mouse_filter = 1
 script = ExtResource("1_rkev4")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -78,7 +79,7 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar"]
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar" node_paths=PackedStringArray("parentNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
+parentNode = NodePath("../../../../..")
 
 [node name="ProgressBar3" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
 custom_minimum_size = Vector2(0, 30)
@@ -116,7 +118,7 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar3"]
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar3" node_paths=PackedStringArray("parentNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,6 +128,7 @@ grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
 nodeType = 1
+parentNode = NodePath("../../../../..")
 
 [node name="ProgressBar4" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
 custom_minimum_size = Vector2(0, 30)
@@ -155,7 +158,7 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar4"]
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar4" node_paths=PackedStringArray("parentNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,6 +168,7 @@ grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
 nodeType = 2
+parentNode = NodePath("../../../../..")
 
 [node name="ProgressBar5" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
 custom_minimum_size = Vector2(0, 30)
@@ -194,7 +198,7 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar5"]
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar5" node_paths=PackedStringArray("parentNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,6 +208,7 @@ grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
 nodeType = 3
+parentNode = NodePath("../../../../..")
 
 [node name="ProgressBar6" type="ProgressBar" parent="MarginContainer/VBoxContainer/Node Tab Holder"]
 custom_minimum_size = Vector2(0, 30)
@@ -233,7 +238,7 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar6"]
+[node name="Wave" type="Button" parent="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar6" node_paths=PackedStringArray("parentNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,6 +248,7 @@ grow_vertical = 2
 flat = true
 script = ExtResource("3_vwgkj")
 nodeType = 4
+parentNode = NodePath("../../../../..")
 
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" to="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar/Wave" method="OnClick"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar3/Wave" to="MarginContainer/VBoxContainer/Node Tab Holder/ProgressBar3/Wave" method="OnClick"]

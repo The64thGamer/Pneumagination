@@ -4,6 +4,7 @@ using System;
 public partial class SearchBarTab : Button
 {
 	[Export] NodeType nodeType;
+	[Export] Control parentNode;
 
 	public enum NodeType
 	{
@@ -41,6 +42,6 @@ public partial class SearchBarTab : Button
 		newNode.GlobalPosition = GetGlobalMousePosition();
 		Random rng = new Random();
 		(newNode as PneumagiNode).nodeID = rng.NextInt64();
-		GetTree().Root.AddChild(newNode);
+		parentNode.GetParent().AddChild(newNode);
 	}
 }
