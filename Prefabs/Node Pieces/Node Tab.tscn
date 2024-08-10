@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ch0j05duanxhd"]
 
-[ext_resource type="LabelSettings" uid="uid://dwyftakgikb1h" path="res://Fonts/Node Settings.tres" id="1_2u2y4"]
+[ext_resource type="LabelSettings" path="res://Fonts/Node Settings.tres" id="1_2u2y4"]
 [ext_resource type="Texture2D" uid="uid://7222hfdb4qnh" path="res://UI/Node Connection.png" id="2_ee2xt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7smx"]

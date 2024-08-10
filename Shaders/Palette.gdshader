@@ -16,9 +16,8 @@ uniform vec4 colorD_black: source_color = vec4(0,0,0,1);
 uniform sampler2D palette : source_color, hint_default_white;
 uniform vec3 triplanar_scale = vec3(1.0, 1.0, 1.0);
 	
-const float shadow = 0.2;
-const float shadow_width = 0.001;
 const vec3 white = vec3(1,1,1);
+const vec3 black = vec3(0,0,0);
 const float triplanar_sharpness = 10.0;
 
 varying vec3 paint;
@@ -64,6 +63,15 @@ void fragment() {
 
 void light() { 
 	SPECULAR_LIGHT += ATTENUATION * LIGHT_COLOR.r * max(dot(LIGHT,NORMAL), 0.0);
-	
-	DIFFUSE_LIGHT = mix(paint_shaded.rgb, paint.rgb, smoothstep(shadow - shadow_width, shadow + shadow_width,SPECULAR_LIGHT)) - SPECULAR_LIGHT;
+	if (SPECULAR_LIGHT.r < 0.5f && 
+		SPECULAR_LIGHT.g < 0.5f && 
+		SPECULAR_LIGHT.b < 0.5f)
+	{
+		DIFFUSE_LIGHT = mix(black, paint_shaded.rgb, SPECULAR_LIGHT*2.0f) - SPECULAR_LIGHT;
+	}
+	else
+	{
+		DIFFUSE_LIGHT = mix(paint_shaded.rgb, paint.rgb, (clamp(SPECULAR_LIGHT,0,1)-0.5f)*2.0f) - SPECULAR_LIGHT;
+	}
+
 }

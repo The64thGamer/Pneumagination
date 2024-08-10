@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://urdfox4rjgpv" path="res://Themes/Node Theme.tres" id="1_3r64b"]
 [ext_resource type="Script" path="res://Scripts/Node Graph/PneumagiNode.cs" id="1_id52y"]
-[ext_resource type="LabelSettings" uid="uid://dwyftakgikb1h" path="res://Fonts/Node Settings.tres" id="1_xv8wx"]
+[ext_resource type="LabelSettings" path="res://Fonts/Node Settings.tres" id="1_xv8wx"]
 [ext_resource type="Texture2D" uid="uid://br42vh7j6sux1" path="res://UI/Mech Head.png" id="2_13iti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icj05"]
