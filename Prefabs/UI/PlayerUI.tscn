@@ -71,7 +71,7 @@ offset_bottom = 960.0
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Inventory" type="Control" parent="Inventory" node_paths=PackedStringArray("uiInvArray")]
+[node name="Inventory" type="Control" parent="Inventory" node_paths=PackedStringArray("uiInvArray", "hotbar")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,6 +81,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_4q24b")
 uiInvArray = NodePath("TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer")
+hotbar = NodePath("../Hotbar/MarginContainer/Item Bar")
 
 [node name="TabContainer" type="TabContainer" parent="Inventory/Inventory"]
 custom_minimum_size = Vector2(423, 0)

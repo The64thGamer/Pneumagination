@@ -7,15 +7,19 @@ public partial class Inventory : Control
     Godot.Collections.Array<InventoryItem> inventory = new Godot.Collections.Array<InventoryItem>();
 	InventoryItem offHandItem;
 	[Export] VBoxContainer uiInvArray;
+	[Export] Control hotbar;
+	Godot.Collections.Array<Node> hotbarBoxes;
 
 	bool canInput = true;
 	public static bool inventoryEnabled;
 	bool pauseScreen = false;
 	bool nodeScreen = false;
 	Input.MouseModeEnum oldMouse;
+	int hotbarIndex;
 
 	public override void _Ready()
 	{
+		hotbarBoxes = hotbar.GetChild(0).GetChildren();
 		Visible = false;
 		inventory.Add(new InventoryItem()
 		{
@@ -41,6 +45,17 @@ public partial class Inventory : Control
 			nodeScreen = !nodeScreen;
 			ToggleAllInventoryUI();
 		}
+
+		if (Input.IsActionJustPressed("Scroll Up"))
+		{
+			hotbarIndex = Mathf.Max(hotbarIndex-1,0);
+			RefreshInventoryLayout();
+		}
+		if (Input.IsActionJustPressed("Scroll Down"))
+		{
+			hotbarIndex = Mathf.Min(hotbarIndex+1,8);
+			RefreshInventoryLayout();
+		}
 	}
 
 	//Redo this to not delete bars and instead reuse them
@@ -58,13 +73,18 @@ public partial class Inventory : Control
 			Godot.Collections.Array<Node> childs = bar.GetChild(0).GetChildren();
 			for (int e = 0; e < childs.Count; e++)
 			{
-				RefreshItemBox(childs[e] as Control, (i*9)+e);
+				RefreshItemBox(childs[e] as Control, (i*9)+e,false);
 			}
 			uiInvArray.AddChild(bar);
 		}
+
+		for (int e = 0; e < hotbarBoxes.Count; e++)
+		{
+			RefreshItemBox(hotbarBoxes[e] as Control, (0*9)+e, hotbarIndex == e);
+		}
 	}
 
-	void RefreshItemBox(Control control, int index)
+	void RefreshItemBox(Control control, int index, bool highlighted)
 	{
 		if(index > inventory.Count-1 || inventory[index] == null)
 		{
@@ -81,6 +101,8 @@ public partial class Inventory : Control
 			lb.Visible = true;
 			lb.Text = inventory[index].count.ToString();
 		}
+
+		(control.FindChild("Highlight",true) as Panel).Visible = highlighted;
 	}
 
 	public void ToggleAllInventoryUI()

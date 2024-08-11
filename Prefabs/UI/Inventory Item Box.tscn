@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8nj3sjh2rbd5"]
+[gd_scene load_steps=5 format=3 uid="uid://c8nj3sjh2rbd5"]
 
 [ext_resource type="Theme" uid="uid://csvm2c04m8ow3" path="res://UI/Theme/Menus.tres" id="1_rfros"]
 [ext_resource type="Texture2D" uid="uid://d3q5as6tnbfs7" path="res://Textures/testtexture.png" id="2_kbnsc"]
@@ -14,6 +14,24 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.121569, 0.0823529, 0.0784314, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+anti_aliasing_size = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwyrx"]
+content_margin_left = 150.0
+content_margin_top = 115.0
+content_margin_right = 140.0
+content_margin_bottom = 300.0
+bg_color = Color(0.156863, 0.109804, 0.105882, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -60,6 +78,17 @@ layout_mode = 2
 texture = ExtResource("2_kbnsc")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="Highlight" type="Panel" parent="Item Box"]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_rfros")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwyrx")
 
 [node name="Count" type="Label" parent="Item Box"]
 texture_filter = 1
