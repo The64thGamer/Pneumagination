@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bllyk0g537y6g"]
 
-[ext_resource type="Shader" path="res://Shaders/Palette.gdshader" id="1_y3sof"]
+[ext_resource type="Shader" path="res://Shaders/Palette Triplanar.gdshader" id="1_y3sof"]
 [ext_resource type="Texture2D" uid="uid://cqnbypcbflxrj" path="res://Textures/PaintMasks/Rock_PaintMap.png" id="2_i7w6i"]
 
 [resource]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b33cy5ihrg8qq"]
+[gd_scene load_steps=19 format=3 uid="uid://b33cy5ihrg8qq"]
 
 [ext_resource type="Script" path="res://Scripts/World/ServerClient.cs" id="2_5i8jb"]
 [ext_resource type="Script" path="res://Scripts/World/EnvironmentController.cs" id="2_6dq8v"]
@@ -6,14 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://cote16tc7or5h" path="res://Prefabs/Wiki.tscn" id="2_uvih8"]
 [ext_resource type="PackedScene" uid="uid://ckmu0mbbjrji2" path="res://Prefabs/UI/Options.tscn" id="3_krb6d"]
 [ext_resource type="Gradient" uid="uid://ck38t5fd85an7" path="res://UI/Gradients/Sun.tres" id="3_mkm73"]
-[ext_resource type="Gradient" uid="uid://cl5kd5v3k56ma" path="res://UI/Gradients/Sky.tres" id="4_i3crq"]
 [ext_resource type="PackedScene" uid="uid://d176ryvhcb1dd" path="res://Prefabs/Node Graph.tscn" id="4_ixtas"]
 [ext_resource type="Gradient" uid="uid://j1x467tpopan" path="res://UI/Gradients/Fog.tres" id="5_suwk1"]
 [ext_resource type="Material" uid="uid://cb6me8ma6gi2o" path="res://Materials/4.tres" id="10_0blar"]
+[ext_resource type="PackedScene" uid="uid://cyjlebnmat2ow" path="res://Models/Items/Lemon.glb" id="11_1xvdt"]
 
 [sub_resource type="Environment" id="Environment_rruv5"]
 background_mode = 1
-background_energy_multiplier = 0.0
+background_color = Color(0.686275, 0.74902, 0.905882, 1)
+ambient_light_source = 2
 ambient_light_energy = 0.0
 tonemap_white = 7.96
 ssao_radius = 6.96
@@ -38,6 +39,10 @@ offsets = PackedFloat32Array(0.46506, 0.939759)
 
 [sub_resource type="Gradient" id="Gradient_uyqn1"]
 offsets = PackedFloat32Array(0, 0.853012)
+
+[sub_resource type="Gradient" id="Gradient_k6rfr"]
+offsets = PackedFloat32Array(0, 0.18638, 0.383513, 0.637993, 0.774194, 0.83871, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.498039, 0.498039, 0.498039, 1, 0.498039, 0.498039, 0.498039, 1, 0.111197, 0.111197, 0.111197, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_hisxf"]
 _data = [Vector2(0.195, 0.315), 0.0, 0.0, 0, 0, Vector2(0.399, 1), 0.0, 0.0, 0, 0, Vector2(0.786192, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.315), 0.0, 0.0, 0, 0]
@@ -72,7 +77,7 @@ script = ExtResource("2_6dq8v")
 fogDepthColor = SubResource("Gradient_i5exu")
 skyDepthColor = SubResource("Gradient_uyqn1")
 sunColor = ExtResource("3_mkm73")
-skyColor = ExtResource("4_i3crq")
+ambientColor = SubResource("Gradient_k6rfr")
 fogColor = ExtResource("5_suwk1")
 maxFogDistance = SubResource("Curve_hisxf")
 minFogDistance = SubResource("Curve_6m3dr")
@@ -85,10 +90,9 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 shadow_enabled = true
 shadow_blur = 0.05
-directional_shadow_mode = 0
 directional_shadow_split_1 = 0.052
-directional_shadow_blend_splits = true
-directional_shadow_max_distance = 2374.0
+directional_shadow_fade_start = 0.9
+directional_shadow_max_distance = 200.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = ExtResource("10_0blar")
@@ -98,3 +102,12 @@ mesh = SubResource("PlaneMesh_35crm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_a05y2")
+
+[node name="Lemon" parent="." instance=ExtResource("11_1xvdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86974, 3.2959, -2.308)
+
+[node name="Lemon2" parent="." instance=ExtResource("11_1xvdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7276, 3.2959, -2.12724)
+
+[node name="Lemon3" parent="." instance=ExtResource("11_1xvdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633341, 3.2959, -0.962369)

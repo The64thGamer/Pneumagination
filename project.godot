@@ -216,3 +216,22 @@ lights_and_shadows/directional_shadow/size=8096
 textures/default_filters/anisotropic_filtering_level=3
 textures/default_filters/texture_mipmap_bias=-1.5
 anti_aliasing/quality/msaa_3d=1
+
+[shader_globals]
+
+fogMaxRadius={
+"type": "float",
+"value": 11.0
+}
+fogMinRadius={
+"type": "float",
+"value": 111.0
+}
+fog_color={
+"type": "color",
+"value": Color(0.635294, 0.635294, 0.635294, 1)
+}
+ambient={
+"type": "color",
+"value": Color(0.498039, 0.498039, 0.498039, 1)
+}

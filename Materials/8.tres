@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cnag8lj5klaun"]
 
-[ext_resource type="Shader" path="res://Shaders/Palette.gdshader" id="1_u2wp6"]
+[ext_resource type="Shader" path="res://Shaders/Palette Triplanar.gdshader" id="1_u2wp6"]
 [ext_resource type="Texture2D" uid="uid://774rdgujydit" path="res://Textures/PaintMasks/PaintMap.png" id="2_8ydwy"]
 
 [resource]

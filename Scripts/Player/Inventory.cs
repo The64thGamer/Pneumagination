@@ -17,6 +17,11 @@ public partial class Inventory : Control
 	public override void _Ready()
 	{
 		Visible = false;
+		inventory.Add(new InventoryItem()
+		{
+			name = "Lemon",
+			count = 1,
+		});
 		RefreshInventoryLayout();
 	}
 
@@ -46,13 +51,14 @@ public partial class Inventory : Control
 			uiInvArray.GetChild(i).QueueFree();
 		}
 
-		for (int i = 0; i < inventory.Count+1; i++)
+		for (int i = 0; i < Mathf.CeilToInt(inventory.Count / 9.0f)+1; i++)
 		{
 			Control bar = (ResourceLoader.Load<PackedScene>("res://Prefabs/UI/Inventory Item Bar.tscn").Instantiate()) as Control;
 
-			foreach (Control item in bar.GetChild(0).GetChildren())
+			Godot.Collections.Array<Node> childs = bar.GetChild(0).GetChildren();
+			for (int e = 0; e < childs.Count; e++)
 			{
-				RefreshItemBox(item,i);
+				RefreshItemBox(childs[e] as Control, (i*9)+e);
 			}
 			uiInvArray.AddChild(bar);
 		}

@@ -1,22 +1,17 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cqwm03oosl6h3"]
 
 [ext_resource type="Shader" path="res://Shaders/Palette.gdshader" id="1_f363c"]
-[ext_resource type="Texture2D" uid="uid://buts0asd88vqb" path="res://Textures/PaintMasks/Grass_PaintMap.png" id="2_he7dn"]
+[ext_resource type="Texture2D" uid="uid://8eemxt3m23jo" path="res://Textures/PaintMasks/Lemon_PaintMap.png" id="2_c84ff"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_f363c")
-shader_parameter/colorA = Color(0, 0.568627, 0.196078, 1)
-shader_parameter/colorB = Color(0.00390631, 0.309712, 0.0195315, 1)
-shader_parameter/colorC = Color(0.603922, 0.960784, 0.72549, 1)
-shader_parameter/colorD = Color(0, 0.505882, 0.176471, 1)
-shader_parameter/colorA_shaded = Color(0.12549, 0.345098, 0.313726, 1)
-shader_parameter/colorB_shaded = Color(0.054902, 0.172549, 0.172549, 1)
-shader_parameter/colorC_shaded = Color(0.211765, 0.419608, 0.466667, 1)
-shader_parameter/colorD_shaded = Color(0, 0.298039, 0.313726, 1)
-shader_parameter/colorA_black = Color(0.1, 0, 0, 1)
-shader_parameter/colorB_black = Color(0, 0.1, 0, 1)
-shader_parameter/colorC_black = Color(0, 0, 0.1, 1)
-shader_parameter/colorD_black = Color(0, 0, 0, 1)
-shader_parameter/triplanar_scale = Vector3(0.03, 0.03, 0.03)
-shader_parameter/palette = ExtResource("2_he7dn")
+shader_parameter/colorA = Color(1, 0.85098, 0, 1)
+shader_parameter/colorB = Color(0.478431, 0.713726, 0.0823529, 1)
+shader_parameter/colorC = Color(1, 1, 1, 1)
+shader_parameter/colorD = Color(0.815686, 0.74902, 0.101961, 1)
+shader_parameter/colorA_shaded = Color(0.556863, 0.713726, 0, 1)
+shader_parameter/colorB_shaded = Color(0.780392, 0.647059, 0, 1)
+shader_parameter/colorC_shaded = Color(0.772549, 0.780392, 0.443137, 1)
+shader_parameter/colorD_shaded = Color(0.427451, 0.623529, 0, 1)
+shader_parameter/palette = ExtResource("2_c84ff")

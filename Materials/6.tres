@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c20pnitvgt03s"]
 
-[ext_resource type="Shader" path="res://Shaders/Palette.gdshader" id="1_7ekth"]
+[ext_resource type="Shader" path="res://Shaders/Palette Triplanar.gdshader" id="1_7ekth"]
 [ext_resource type="Texture2D" uid="uid://btyakn5cuaxe4" path="res://Textures/PaintMasks/Sandy Trail_PaintMap.png" id="2_n77xx"]
 
 [resource]
