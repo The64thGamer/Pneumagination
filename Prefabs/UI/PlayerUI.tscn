@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd2w72tikpphr"]
+[gd_scene load_steps=15 format=3 uid="uid://bd2w72tikpphr"]
 
 [ext_resource type="Texture2D" uid="uid://ietyxumfo2yv" path="res://UI/Cursor.png" id="2_laq3d"]
 [ext_resource type="PackedScene" uid="uid://dra28sfjs5j7j" path="res://Prefabs/UI/Inventory Item Bar.tscn" id="3_58obt"]
 [ext_resource type="Script" path="res://Scripts/Player/HideSimplePlayerUI.cs" id="3_dwho8"]
 [ext_resource type="Script" path="res://Scripts/Player/Inventory.cs" id="4_4q24b"]
-[ext_resource type="PackedScene" uid="uid://bqqko13w7ibcu" path="res://Prefabs/UI/Fake Inventory Bar.tscn" id="4_qnxyn"]
 [ext_resource type="PackedScene" uid="uid://ceh2t3wktuofd" path="res://Prefabs/UI/Crafting Bar.tscn" id="6_p7eu3"]
 [ext_resource type="Theme" uid="uid://csvm2c04m8ow3" path="res://UI/Theme/Menus.tres" id="7_wrgav"]
 [ext_resource type="FontFile" uid="uid://cq3fhluvc2kjn" path="res://Fonts/adm-3a.otf" id="9_guprt"]
@@ -72,7 +71,7 @@ offset_bottom = 960.0
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="Inventory" type="Control" parent="Inventory"]
+[node name="Inventory" type="Control" parent="Inventory" node_paths=PackedStringArray("uiInvArray")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,6 +80,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("4_4q24b")
+uiInvArray = NodePath("TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer")
 
 [node name="TabContainer" type="TabContainer" parent="Inventory/Inventory"]
 custom_minimum_size = Vector2(423, 0)
@@ -123,48 +123,6 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Item Bar" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar2" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar3" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar4" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar7" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar8" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar9" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar10" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar14" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar15" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar16" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar17" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar6" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_58obt")]
-layout_mode = 2
-
-[node name="Item Bar5" parent="Inventory/Inventory/TabContainer/Inventory/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_qnxyn")]
-layout_mode = 2
 
 [node name="Gear" type="Panel" parent="Inventory/Inventory/TabContainer"]
 visible = false

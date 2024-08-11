@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8nj3sjh2rbd5"]
+[gd_scene load_steps=4 format=3 uid="uid://c8nj3sjh2rbd5"]
 
 [ext_resource type="Theme" uid="uid://csvm2c04m8ow3" path="res://UI/Theme/Menus.tres" id="1_rfros"]
-[ext_resource type="Texture2D" uid="uid://bvexgcefmn121" path="res://UI/Icons/X Mark.svg" id="2_4dk7m"]
 [ext_resource type="Texture2D" uid="uid://d3q5as6tnbfs7" path="res://Textures/testtexture.png" id="2_kbnsc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6chci"]
@@ -31,6 +30,7 @@ offset_right = 40.0
 offset_bottom = 45.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 1
 
 [node name="Item Box" type="Panel" parent="."]
 custom_minimum_size = Vector2(40, 40)
@@ -55,18 +55,13 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TextureButton" type="TextureButton" parent="Item Box/MarginContainer"]
+[node name="Image" type="TextureRect" parent="Item Box/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("2_kbnsc")
-texture_pressed = ExtResource("2_4dk7m")
-texture_hover = ExtResource("2_4dk7m")
-texture_disabled = ExtResource("2_4dk7m")
-texture_focused = ExtResource("2_4dk7m")
-ignore_texture_size = true
+texture = ExtResource("2_kbnsc")
+expand_mode = 1
 stretch_mode = 6
 
-[node name="Label" type="Label" parent="Item Box"]
+[node name="Count" type="Label" parent="Item Box"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
@@ -84,3 +79,14 @@ theme_override_font_sizes/font_size = 7
 text = "9999"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true

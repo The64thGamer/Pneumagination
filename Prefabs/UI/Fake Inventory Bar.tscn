@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqqko13w7ibcu"]
+[gd_scene load_steps=2 format=3 uid="uid://c4luw2fmqsxtk"]
 
-[ext_resource type="PackedScene" uid="uid://jjg1r8h0bg77" path="res://Prefabs/UI/Fake Inventory Box.tscn" id="1_1ptta"]
+[ext_resource type="PackedScene" uid="uid://c3ymbf6ryaxet" path="res://Prefabs/UI/Fake Inventory Box.tscn" id="1_1ptta"]
 
 [node name="Item Bar" type="AspectRatioContainer"]
 anchors_preset = 15

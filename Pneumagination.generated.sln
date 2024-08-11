@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pneumagination", "Pneumagination.csproj", "{5C5C4346-1BF5-4184-BB3B-E45C6093804E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pneumagination", "Pneumagination.csproj", "{11B851A0-F977-4574-8C33-8E504F7E6C06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5C5C4346-1BF5-4184-BB3B-E45C6093804E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C5C4346-1BF5-4184-BB3B-E45C6093804E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C5C4346-1BF5-4184-BB3B-E45C6093804E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C5C4346-1BF5-4184-BB3B-E45C6093804E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B851A0-F977-4574-8C33-8E504F7E6C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B851A0-F977-4574-8C33-8E504F7E6C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B851A0-F977-4574-8C33-8E504F7E6C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B851A0-F977-4574-8C33-8E504F7E6C06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

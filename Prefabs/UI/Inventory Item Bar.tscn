@@ -23,7 +23,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 3
 
-[node name="Item Box" parent="HBoxContainer" instance=ExtResource("1_dwws0")]
+[node name="Item Box1" parent="HBoxContainer" instance=ExtResource("1_dwws0")]
 layout_mode = 2
 
 [node name="Item Box2" parent="HBoxContainer" instance=ExtResource("1_dwws0")]
