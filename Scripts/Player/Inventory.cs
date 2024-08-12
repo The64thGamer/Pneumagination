@@ -16,9 +16,28 @@ public partial class Inventory : Control
 	bool nodeScreen = false;
 	Input.MouseModeEnum oldMouse;
 	int hotbarIndex;
+	InputManager inputManager;
 
-	public override void _Ready()
-	{
+    void OnToggleMenu(bool menu)
+    {
+        Visible = menu;
+		if(Visible)
+		{
+			oldMouse = Input.MouseMode;
+			Input.MouseMode = Input.MouseModeEnum.Visible;
+		}
+		else
+		{
+			Input.MouseMode = oldMouse;
+		}
+		inventoryEnabled = Visible;
+    }
+
+    public override void _Ready()
+    {     
+		inputManager = GetTree().CurrentScene as InputManager; 
+        inputManager.GetMenuClass("Inventory").ChangedMenu += (on) => OnToggleMenu(on);
+
 		hotbarBoxes = hotbar.GetChild(0).GetChildren();
 		Visible = false;
 		inventory.Add(new InventoryItem()
@@ -31,29 +50,22 @@ public partial class Inventory : Control
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("Inventory") && canInput && !pauseScreen && !nodeScreen)
-		{
-			ToggleInventory();
-		}
-		if (Input.IsActionJustPressed("Pause"))
-		{
-			pauseScreen = !pauseScreen;
-			ToggleAllInventoryUI();
-		}
-		if (Input.IsActionJustPressed("Toggle NodeGraph"))
-		{
-			nodeScreen = !nodeScreen;
-			ToggleAllInventoryUI();
-		}
-
 		if (Input.IsActionJustPressed("Scroll Up"))
 		{
-			hotbarIndex = Mathf.Max(hotbarIndex-1,0);
+			hotbarIndex = hotbarIndex-1;
+			if(hotbarIndex < 0)
+			{
+				hotbarIndex = 8;
+			}
 			RefreshInventoryLayout();
 		}
 		if (Input.IsActionJustPressed("Scroll Down"))
 		{
-			hotbarIndex = Mathf.Min(hotbarIndex+1,8);
+			hotbarIndex = hotbarIndex+1;
+			if(hotbarIndex > 8)
+			{
+				hotbarIndex = 0;
+			}
 			RefreshInventoryLayout();
 		}
 	}
@@ -116,22 +128,6 @@ public partial class Inventory : Control
 			(GetParent() as Control).Visible = true;
 		}
 	}
-
-	public void ToggleInventory()
-	{
-		Visible = !Visible;
-		if(Visible)
-		{
-			oldMouse = Input.MouseMode;
-			Input.MouseMode = Input.MouseModeEnum.Visible;
-		}
-		else
-		{
-			Input.MouseMode = oldMouse;
-		}
-		inventoryEnabled = Visible;
-	}
-
 	public void StopInputs()
 	{
 		canInput = false;

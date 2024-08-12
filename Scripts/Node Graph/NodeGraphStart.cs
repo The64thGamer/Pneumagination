@@ -9,27 +9,14 @@ public partial class NodeGraphStart : CanvasLayer
 	Input.MouseModeEnum oldMouse;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-	{
+    {      
 		Visible = false;
+        (GetTree().CurrentScene as InputManager).GetMenuClass("Node Graph").ChangedMenu += (on) => OnToggleMenu(on);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public void OnToggleMenu(bool on)
 	{
-		if(Input.IsActionJustPressed("Toggle NodeGraph") && canInput && !pauseScreen)
-		{
-			ToggleNode();
-		}
-				
-		if (Input.IsActionJustPressed("Pause"))
-		{
-			pauseScreen = !pauseScreen;
-		}
-	}
-
-	public void ToggleNode()
-	{
-		Visible = !Visible;
+		Visible = on;
 		if(Visible)
 		{
 			oldMouse = Input.MouseMode;
@@ -40,15 +27,5 @@ public partial class NodeGraphStart : CanvasLayer
 			Input.MouseMode = oldMouse;
 		}
 		nodeEnabled = Visible;
-	}
-
-	public void StopInputs()
-	{
-		canInput = false;
-	}
-
-	public void StartInputs()
-	{		
-		canInput = true;
 	}
 }

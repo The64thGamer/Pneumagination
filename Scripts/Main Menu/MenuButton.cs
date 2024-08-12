@@ -54,10 +54,10 @@ public partial class MenuButton : BaseButton
 		switch(buttonFunction)
 		{
 			case ButtonFunctionType.openTerminal:
-				Console.Instance.ToggleConsole();
+				(GetTree().CurrentScene as InputManager).ToggleAMenu("Console");
 				break;
 			case ButtonFunctionType.openWiki:
-				GetTree().Root.GetNode<WikiStart>(currentScene + "/Wiki").ToggleWiki();
+				(GetTree().CurrentScene as InputManager).ToggleAMenu("Wiki");
 				break;
 			case ButtonFunctionType.openOptions:
 				GetTree().Root.GetNode<OptionsStart>(currentScene + "/Options").ToggleOptions();

@@ -1,32 +1,18 @@
 using Godot;
-using System;
+using Console = media.Laura.SofiaConsole.Console;
 
 public partial class MenuToggle : CanvasLayer
 {
 	Input.MouseModeEnum oldMouse;
 	public static bool pauseMenuEnabled;
 
-	public override void _Ready()
-	{
-		SetMenu(false);
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		if (Input.IsActionJustPressed("Pause"))
-		{
-			SetMenu(!Visible);
-        }
-	}
-
-	void SetMenu(bool set)
-	{
+    void OnToggleMenu(bool menu)
+    {
 		if(GetTree().CurrentScene.Name == "Menu")
 		{
 			return;
 		}
-		Visible = set;
+		Visible = menu;
 		if(Visible)
 		{
 			oldMouse = Input.MouseMode;
@@ -37,5 +23,16 @@ public partial class MenuToggle : CanvasLayer
 			Input.MouseMode = oldMouse;
 		}
 		pauseMenuEnabled = Visible;
+    }
+
+	void SetConsole(bool on)
+	{
+		Console.Instance.SetConsole(on);
+	}
+
+    public override void _Ready()
+    {      
+        (GetTree().CurrentScene as InputManager).GetMenuClass("Pause Screen").ChangedMenu += (on) => OnToggleMenu(on);
+		(GetTree().CurrentScene as InputManager).GetMenuClass("Console").ChangedMenu += (on) => SetConsole(on);		
 	}
 }

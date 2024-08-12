@@ -11,8 +11,22 @@ public partial class PhotoMode : Camera3D
     Node3D pivot;
     Node3D parent;
 
+    void OnToggleMenu(bool menu)
+    {
+        if(menu)
+        {
+            EnterPhotoMode();
+        }
+        else
+        {
+            ExitPhotoMode();
+        }
+    }
+
     public override void _Ready()
-    {       
+    {      
+        (GetTree().CurrentScene as InputManager).GetMenuClass("Photo Mode").ChangedMenu += (on) => OnToggleMenu(on);
+
         //This is awful but FindChild doesn't work, please fix 
         envController = GetTree().Root.GetNode("World/WorldEnvironment") as EnvironmentController;
 
@@ -31,18 +45,6 @@ public partial class PhotoMode : Camera3D
         if(inPhotoModeLoadingScreen)
         {
             return;
-        }
-
-        if (Input.IsActionJustPressed("Photo Mode"))
-        {
-            if(!Current)
-            {
-                EnterPhotoMode();
-            }
-            else
-            {
-                ExitPhotoMode();
-            }
         }
 
         if (Current)
@@ -65,7 +67,7 @@ public partial class PhotoMode : Camera3D
             parent.RotateY((float)delta * 0.5f);
         }
 
-        if(inPhotoModeLoadingScreen)// && WorldGen.firstChunkLoaded)
+        if(inPhotoModeLoadingScreen)
         {
             inPhotoModeLoadingScreen = false;
             ExitPhotoMode();

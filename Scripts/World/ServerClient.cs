@@ -56,7 +56,7 @@ public partial class ServerClient : Node
 
 		if(PlayerPrefs.GetBool("Hosting Headless"))
 		{
-			Console.Instance.ToggleConsole();
+			//Console.Instance.ToggleConsole();
 		}
 		else
 		{

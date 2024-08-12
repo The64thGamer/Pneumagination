@@ -21,7 +21,6 @@ public partial class Console : Node
 
     [Export] private CanvasLayer _consoleCanvas;
     [Export] private Panel _background;
-    [Export] private Button _closeButton;
     [Export] private LineEdit _commandInput;
     [Export] private Button _commandSendButton;
     [Export] private ScrollContainer _historyScrollContainer;
@@ -34,7 +33,6 @@ public partial class Console : Node
         Instance?.Free();
         Instance = this;
         
-        _closeButton.Pressed += () => { SetConsole(false); };
         _commandSendButton.Pressed += () => { ProcessCommand(_commandInput.Text); };
         _commandInput.TextSubmitted += ProcessCommand;
         
@@ -42,7 +40,6 @@ public partial class Console : Node
         
         Print(Tr("DEBUG_CONSOLE_HEADER"), PrintType.Success);
         Space();
-        
     }
 
     public override void _Input(InputEvent @event)
@@ -51,17 +48,6 @@ public partial class Console : Node
 
         if (@event is InputEventKey { Pressed: true } eventKey)
         {
-            // Close Console
-            if (Open && eventKey.Keycode == Key.Escape)
-            {
-                SetConsole(false);
-            }
-
-            // Open Console
-            if (InputMap.HasAction("toggle_console") && Input.IsActionPressed("toggle_console") || eventKey.Keycode == Key.F3)
-            {
-                ToggleConsole();
-            }
 
             // Press Up to toggle between previous commands
             if (eventKey.Keycode == Key.Up && _commandInput.HasFocus() && _commandHistory.Count > 0)
@@ -89,14 +75,7 @@ public partial class Console : Node
         }
     }
 
-
-
-    public void ToggleConsole()
-    {        
-        SetConsole(!Open);
-    }
-
-    private void SetConsole(bool open)
+    public void SetConsole(bool open)
     {        
         if(open)
         {
