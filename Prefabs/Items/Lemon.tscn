@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://gn78s0j1osdr"]
+
+[ext_resource type="PackedScene" uid="uid://cyjlebnmat2ow" path="res://Models/Items/Lemon.glb" id="1_pwqtg"]
+
+[node name="Lemon" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86974, 3.2959, -2.308)
+
+[node name="Lemon Model" parent="." instance=ExtResource("1_pwqtg")]

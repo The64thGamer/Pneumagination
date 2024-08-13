@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b33cy5ihrg8qq"]
+[gd_scene load_steps=19 format=3 uid="uid://b33cy5ihrg8qq"]
 
 [ext_resource type="Script" path="res://Scripts/World/InputManager.cs" id="1_uto17"]
 [ext_resource type="Script" path="res://Scripts/World/ServerClient.cs" id="2_5i8jb"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://d176ryvhcb1dd" path="res://Prefabs/Node Graph.tscn" id="4_ixtas"]
 [ext_resource type="Gradient" uid="uid://j1x467tpopan" path="res://UI/Gradients/Fog.tres" id="5_suwk1"]
 [ext_resource type="Material" uid="uid://cb6me8ma6gi2o" path="res://Materials/4.tres" id="10_0blar"]
-[ext_resource type="PackedScene" uid="uid://cyjlebnmat2ow" path="res://Models/Items/Lemon.glb" id="11_1xvdt"]
 
 [sub_resource type="Environment" id="Environment_rruv5"]
 background_mode = 1
@@ -101,15 +100,7 @@ material_override = ExtResource("10_0blar")
 mesh = SubResource("PlaneMesh_35crm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_a05y2")
-
-[node name="Lemon" parent="." instance=ExtResource("11_1xvdt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.86974, 3.2959, -2.308)
-
-[node name="Lemon2" parent="." instance=ExtResource("11_1xvdt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7276, 3.2959, -2.12724)
-
-[node name="Lemon3" parent="." instance=ExtResource("11_1xvdt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633341, 3.2959, -0.962369)

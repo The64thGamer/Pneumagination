@@ -1,16 +1,17 @@
 [remap]
 
-importer="citizenl.godot-csv-importer"
-type="Resource"
+importer="csv_translation"
+type="Translation"
 uid="uid://dbw3fvuprihcv"
-path="res://.godot/imported/ItemData.csv-249a25bbff9ab129cf748166f8a107b7.tres"
 
 [deps]
 
+files=["res://Data/ItemData.item.translation", "res://Data/ItemData.wiki.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation"]
+
 source_file="res://Data/ItemData.csv"
-dest_files=["res://.godot/imported/ItemData.csv-249a25bbff9ab129cf748166f8a107b7.tres"]
+dest_files=["res://Data/ItemData.item.translation", "res://Data/ItemData.wiki.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation", "res://Data/ItemData.color.translation"]
 
 [params]
 
+compress=true
 delimiter=0
-describe_headers=true
